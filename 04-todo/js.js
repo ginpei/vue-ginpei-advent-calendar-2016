@@ -31,11 +31,11 @@ window.app = new Vue({
 		taskItem: taskItem,
 	},
 	data: {
-		newTask: { name: '' },
+		newTask: { finished: false, name: '' },
 		tasks: [
-			{ name: 'Buy milk 2L' },
-			{ name: 'Call to Alice' },
-			{ name: 'Return books' },
+			{ finished: false, name: 'Buy milk 2L' },
+			{ finished: false, name: 'Call to Alice' },
+			{ finished: false, name: 'Return books' },
 		],
 	},
 	computed: {
@@ -43,7 +43,11 @@ window.app = new Vue({
 	methods: {
 		newTask_submit: function(event) {
 			this.tasks.unshift(this.newTask);
-			this.newTask = { name: '' };
+			this.newTask = { finished: false, name: '' };
+		},
+
+		delete_click: function(event) {
+			this.tasks = this.tasks.filter(v=>!v.finished);
 		},
 	},
 });

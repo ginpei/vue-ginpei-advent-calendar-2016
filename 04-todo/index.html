@@ -15,7 +15,7 @@
 				</div>
 				<hr />
 				<div class="taskListOperator">
-					<button class="btn btn-default">Delete finished tasks</button>
+					<button v-on:click="delete_click" class="btn btn-default">Delete finished tasks</button>
 				</div>
 				<div class="list-group">
 					<task-item v-for="task in tasks" :task="task"></task-item>
@@ -36,7 +36,7 @@
 
 		<script id="template-task-item" type="text/x-template">
 			<label class="list-group-item">
-				<input type="checkbox">
+				<input v-model="task.finished" type="checkbox">
 				{{task.name}}
 			</label>
 		</script>
