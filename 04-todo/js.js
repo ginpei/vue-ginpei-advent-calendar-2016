@@ -42,8 +42,7 @@ window.app = new Vue({
 	},
 	methods: {
 		newTask_submit: function(event) {
-			console.log(this.newTask.name);  // TODO: implement
-
+			this.tasks.unshift(this.newTask);
 			this.newTask = { name: '' };
 		},
 	},
