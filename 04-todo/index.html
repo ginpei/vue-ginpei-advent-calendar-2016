@@ -25,13 +25,18 @@
 					<button class="btn btn-default">Delete finished tasks</button>
 				</div>
 				<div class="list-group">
-					<label v-for="task in tasks" class="list-group-item">
-						<input type="checkbox">
-						{{task.name}}
-					</label>
+					<task-item v-for="task in tasks" :task="task"></task-item>
 				</div>
 			</div>
 		</div>
+
+		<script id="template-task-item" type="text/x-template">
+			<label class="list-group-item">
+				<input type="checkbox">
+				{{task.name}}
+			</label>
+		</script>
+
 		<script src="vue.js"></script>
 		<script src="js.js"></script>
 	</body>
