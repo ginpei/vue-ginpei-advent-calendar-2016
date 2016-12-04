@@ -9,7 +9,35 @@
 	<body>
 		<div id="app">
 			<div class="container">
-				<h1 class="title">{{message}}</h1>
+				<h1>Vue TODO</h1>
+				<div>
+					<form>
+						<div class="input-group">
+							<input class="form-control" type="text" placeholder="Buy milk 2L">
+							<span class="input-group-btn">
+								<button class="btn btn-primary">Add new task</button>
+							</span>
+						</div>
+					</form>
+				</div>
+				<hr />
+				<div class="taskListOperator">
+					<button class="btn btn-default">Delete finished tasks</button>
+				</div>
+				<div class="list-group">
+					<label class="list-group-item">
+						<input type="checkbox">
+						Item 1
+					</label>
+					<label class="list-group-item">
+						<input type="checkbox">
+						Item 2
+					</label>
+					<label class="list-group-item">
+						<input type="checkbox">
+						Item 3
+					</label>
+				</div>
 			</div>
 		</div>
 		<script src="vue.js"></script>

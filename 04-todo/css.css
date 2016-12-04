@@ -1,3 +1,4 @@
-.title {
-	color: red;
+.taskListOperator {
+	text-align: right;
+	margin-bottom: 1em;
 }
