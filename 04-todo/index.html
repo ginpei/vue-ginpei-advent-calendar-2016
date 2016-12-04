@@ -36,6 +36,7 @@
 
 		<script id="template-task-item" type="text/x-template">
 			<label class="list-group-item">
+				<span v-on:click.prevent="edit_click" class="pull-right btn btn-link">Edit</span>
 				<input v-model="task.finished" type="checkbox">
 				{{task.name}}
 			</label>

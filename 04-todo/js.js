@@ -22,6 +22,15 @@ var taskItem = {
 	props: [
 		'task',
 	],
+	methods: {
+		edit_click: function(event) {
+			// update if not canceled
+			var newName = window.prompt('Task Name', this.task.name);
+			if (typeof newName === 'string') {
+				this.task.name = newName;
+			}
+		},
+	},
 };
 
 window.app = new Vue({
