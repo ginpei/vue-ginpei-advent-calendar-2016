@@ -19,6 +19,7 @@
 				</div>
 				<div class="list-group">
 					<task-item v-for="task in tasks" :task="task"></task-item>
+					<p v-show="tasks.length < 1" class="text-muted">No tasks. Yay!</p>
 				</div>
 			</div>
 		</div>
