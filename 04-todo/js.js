@@ -1,6 +1,11 @@
-var app = new Vue({
+/* global window, Vue */
+
+window.app = new Vue({
 	el: '#app',
 	data: {
-		message: 'Hello TODO List',
+	},
+	computed: {
+	},
+	methods: {
 	},
 });
