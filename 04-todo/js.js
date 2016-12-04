@@ -2,6 +2,19 @@
 
 var taskForm = {
 	template: '#template-task-form',
+	props: [
+		'task',
+		'on-submit',
+	],
+	methods: {
+		form_submit: function(event) {
+			if (!this.task.name) {
+				return;
+			}
+
+			this.onSubmit(event, this.task);
+		},
+	},
 };
 
 var taskItem = {
@@ -18,6 +31,7 @@ window.app = new Vue({
 		taskItem: taskItem,
 	},
 	data: {
+		newTask: { name: '' },
 		tasks: [
 			{ name: 'Buy milk 2L' },
 			{ name: 'Call to Alice' },
@@ -27,5 +41,10 @@ window.app = new Vue({
 	computed: {
 	},
 	methods: {
+		newTask_submit: function(event) {
+			console.log(this.newTask.name);  // TODO: implement
+
+			this.newTask = { name: '' };
+		},
 	},
 });

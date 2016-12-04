@@ -11,7 +11,7 @@
 			<div class="container">
 				<h1>Vue TODO</h1>
 				<div>
-					<task-form></task-form>
+					<task-form :task="newTask" :on-submit="newTask_submit"></task-form>
 				</div>
 				<hr />
 				<div class="taskListOperator">
@@ -24,9 +24,9 @@
 		</div>
 
 		<script id="template-task-form" type="text/x-template">
-			<form>
+			<form v-on:submit.prevent="form_submit">
 				<div class="input-group">
-					<input class="form-control" type="text" placeholder="Buy milk 2L">
+					<input v-model="task.name" class="form-control" type="text" placeholder="Buy milk 2L">
 					<span class="input-group-btn">
 						<button class="btn btn-primary">Add new task</button>
 					</span>
