@@ -1,5 +1,22 @@
 /* global window, Vue */
 
+var store = new Vuex.Store({
+	state: {
+		newTask: { finished: false, name: '' },
+		tasks: [
+			{ finished: false, name: 'Buy milk 2L' },
+			{ finished: false, name: 'Call to Alice' },
+			{ finished: false, name: 'Return books' },
+		],
+	},
+	mutations: {
+		add: function(state) {
+			state.tasks.unshift(state.newTask);
+			state.newTask = { finished: false, name: '' };
+		},
+	},
+});
+
 var taskForm = {
 	template: '#template-task-form',
 	props: [
@@ -39,20 +56,12 @@ window.app = new Vue({
 		taskForm: taskForm,
 		taskItem: taskItem,
 	},
-	data: {
-		newTask: { finished: false, name: '' },
-		tasks: [
-			{ finished: false, name: 'Buy milk 2L' },
-			{ finished: false, name: 'Call to Alice' },
-			{ finished: false, name: 'Return books' },
-		],
-	},
+	data: store.state,
 	computed: {
 	},
 	methods: {
 		newTask_submit: function(event) {
-			this.tasks.unshift(this.newTask);
-			this.newTask = { finished: false, name: '' };
+			store.commit('add');
 		},
 
 		delete_click: function(event) {
