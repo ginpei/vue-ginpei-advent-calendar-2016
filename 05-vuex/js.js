@@ -21,7 +21,6 @@ var taskForm = {
 	template: '#template-task-form',
 	props: [
 		'task',
-		'on-submit',
 	],
 	methods: {
 		form_submit: function(event) {
@@ -29,7 +28,7 @@ var taskForm = {
 				return;
 			}
 
-			this.onSubmit(event, this.task);
+			store.commit('add');
 		},
 	},
 };
@@ -60,10 +59,6 @@ window.app = new Vue({
 	computed: {
 	},
 	methods: {
-		newTask_submit: function(event) {
-			store.commit('add');
-		},
-
 		delete_click: function(event) {
 			this.tasks = this.tasks.filter(v=>!v.finished);
 		},
