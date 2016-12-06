@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Computed</title>
+		<link rel="stylesheet" href="css.css" />
+	</head>
+	<body>
+		<div id="app">
+			<p>
+				<label>
+					First Name:
+					<input v-model="firstName" type="text" />
+				</label>
+				<br />
+				<label>
+					Last Name:
+					<input v-model="lastName" type="text" />
+				</label>
+			</p>
+			<h1>Hello {{initial}}!</h1>
+		</div>
+
+		<script src="vue.js"></script>
+		<script src="js.js"></script>
+	</body>
+</html>
