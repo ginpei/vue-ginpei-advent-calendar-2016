@@ -31,6 +31,23 @@ var app = new Vue({
 var app2 = new Vue({
 	el: '#app2',
 	components: {
+		myClock: {
+			template: '<p>{{readable}}</p>',
+			props: [
+				'now',
+			],
+			computed: {
+				readable: function() {
+					var string =
+						('0' + this.now.getHours()).slice(-2) +
+						':' +
+						('0' + this.now.getMinutes()).slice(-2) +
+						':' +
+						('0' + this.now.getSeconds()).slice(-2);
+					return string;
+				},
+			},
+		},
 		userItem: {
 			template: '<li>{{initial}}</li>',
 			props: [
@@ -47,10 +64,17 @@ var app2 = new Vue({
 		},
 	},
 	data: {
+		now: null,
 		users: [
 			{ firstName: 'ginpei', lastName: 'takanashi' },
 			{ firstName: 'kintoki', lastName: 'sakata' },
 			{ firstName: 'noriko', lastName: 'takaya' },
 		],
+	},
+	created: function() {
+		this.now = new Date();
+		setInterval(()=>{
+			this.now = new Date();
+		}, 10);
 	},
 });

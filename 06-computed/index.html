@@ -22,6 +22,7 @@
 		</div>
 		<div id="app2">
 			<h1>User Initials</h1>
+			<my-clock :now="now"></my-clock>
 			<ul>
 				<user-item v-for="user in users" :user="user"></user-item>
 			</ul>
