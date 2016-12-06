@@ -25,3 +25,32 @@ var app = new Vue({
 		},
 	},
 });
+
+// --------------------------------
+
+var app2 = new Vue({
+	el: '#app2',
+	components: {
+		userItem: {
+			template: '<li>{{initial}}</li>',
+			props: [
+				'user',
+			],
+			computed: {
+				initial: function() {
+					var initial =
+						this.user.firstName.charAt(0).toUpperCase() + '.' +
+						this.user.lastName.charAt(0).toUpperCase() + '.';
+					return initial;
+				},
+			},
+		},
+	},
+	data: {
+		users: [
+			{ firstName: 'ginpei', lastName: 'takanashi' },
+			{ firstName: 'kintoki', lastName: 'sakata' },
+			{ firstName: 'noriko', lastName: 'takaya' },
+		],
+	},
+});
