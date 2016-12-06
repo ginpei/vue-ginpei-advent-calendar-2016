@@ -1,10 +1,13 @@
 {
   "private": "true",
   "scripts": {
-    "start": "browserify -t vueify -e src/main.js -o out/app.js "
+		"start": "npm run vue-watch",
+		"vue-build": "browserify -t vueify -e src/main.js -o out/app.js ",
+		"vue-watch": "chokidar src/* -c 'npm run vue-build'"
   },
   "dependencies": {
     "browserify": "^13.1.1",
+    "chokidar-cli": "^1.2.0",
     "vueify": "^9.3.0"
   },
   "devDependencies": {}
