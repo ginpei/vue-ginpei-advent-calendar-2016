@@ -1,4 +1,8 @@
 <style>
+	.taskListOperator {
+		text-align: right;
+		margin-bottom: 1em;
+	}
 </style>
 
 <template>
