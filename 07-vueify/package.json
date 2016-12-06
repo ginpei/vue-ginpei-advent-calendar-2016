@@ -1,0 +1,11 @@
+{
+  "private": "true",
+  "scripts": {
+    "start": "browserify -t vueify -e src/main.js -o out/app.js "
+  },
+  "dependencies": {
+    "browserify": "^13.1.1",
+    "vueify": "^9.3.0"
+  },
+  "devDependencies": {}
+}
