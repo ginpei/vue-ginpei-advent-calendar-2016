@@ -3,11 +3,15 @@
   "scripts": {
     "start": "npm run vue-watch",
     "vue-build": "browserify -t vueify -e src/main.js -o out/app.js ",
+    "vue-lint": "eslint src/* || echo ''",
     "vue-watch": "chokidar src/* -c 'npm run vue-build'"
   },
   "dependencies": {
     "browserify": "^13.1.1",
     "chokidar-cli": "^1.2.0",
+    "eslint": "^3.11.1",
+    "eslint-config-vue": "^2.0.1",
+    "eslint-plugin-vue": "^1.0.0",
     "vue": "^2.1.4",
     "vueify": "^9.3.0",
     "vuex": "^2.0.0"
