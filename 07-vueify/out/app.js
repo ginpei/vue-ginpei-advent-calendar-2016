@@ -6248,31 +6248,6 @@ module.exports = Vue$2;
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{"_process":1}],4:[function(require,module,exports){
-var inserted = exports.cache = {}
-
-function noop () {}
-
-exports.insert = function (css) {
-  if (inserted[css]) return noop
-  inserted[css] = true
-
-  var elem = document.createElement('style')
-  elem.setAttribute('type', 'text/css')
-
-  if ('textContent' in elem) {
-    elem.textContent = css
-  } else {
-    elem.styleSheet.cssText = css
-  }
-
-  document.getElementsByTagName('head')[0].appendChild(elem)
-  return function () {
-    document.getElementsByTagName('head')[0].removeChild(elem)
-    inserted[css] = false
-  }
-}
-
-},{}],5:[function(require,module,exports){
 /**
  * vuex v2.0.0
  * (c) 2016 Evan You
@@ -6801,8 +6776,7 @@ var index = {
 return index;
 
 })));
-},{}],6:[function(require,module,exports){
-var __vueify_style_dispose__ = require("vueify/lib/insert-css").insert(".taskListOperator {\n\ttext-align: right;\n\tmargin-bottom: 1em;\n}")
+},{}],5:[function(require,module,exports){
 ;(function(){
 //
 //
@@ -6810,43 +6784,12 @@ var __vueify_style_dispose__ = require("vueify/lib/insert-css").insert(".taskLis
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
-const taskForm = require('./TaskForm.vue');
-const taskItem = require('./TaskItem.vue');
-const store = require('./store.js');
+var MyTitle = require('./MyTitle.vue');
 
 module.exports = {
 	components: {
-		taskForm: taskForm,
-		taskItem: taskItem,
-	},
-	data: function() {
-		return store.state;
-	},
-	computed: {
-	},
-	methods: {
-		delete_click: function(event) {
-			this.tasks = this.tasks.filter(v=>!v.finished);
-		},
+		MyTitle
 	},
 };
 
@@ -6854,50 +6797,30 @@ module.exports = {
 if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;return _h('div',{staticClass:"container"},[_h('h1',["Vue TODO"])," ",_h('div',[_h('task-form',{attrs:{"task":_vm.newTask}})])," ",_h('hr')," ",_h('div',{staticClass:"taskListOperator"},[_h('button',{staticClass:"btn btn-default",on:{"click":_vm.delete_click}},["Delete finished tasks"])])," ",_h('div',{staticClass:"list-group"},[_vm._l((_vm.tasks),function(task){return _h('task-item',{attrs:{"task":task}})})," ",_h('p',{directives:[{name:"show",rawName:"v-show",value:(_vm.tasks.length < 1),expression:"tasks.length < 1"}],staticClass:"text-muted"},["No tasks. Yay!"])])])}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;return _h('div',{staticClass:"container"},[_h('my-title')])}
 __vue__options__.staticRenderFns = []
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
   module.hot.accept()
-  module.hot.dispose(__vueify_style_dispose__)
   if (!module.hot.data) {
     hotAPI.createRecord("data-v-1", __vue__options__)
   } else {
     hotAPI.reload("data-v-1", __vue__options__)
   }
 })()}
-},{"./TaskForm.vue":7,"./TaskItem.vue":8,"./store.js":10,"vue":3,"vue-hot-reload-api":2,"vueify/lib/insert-css":4}],7:[function(require,module,exports){
+},{"./MyTitle.vue":6,"vue":3,"vue-hot-reload-api":2}],6:[function(require,module,exports){
 ;(function(){
 //
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
-const store = require('./store.js');
+var store = require('./store.js');
 
 module.exports = {
-	props: [
-		'task',
-	],
-	methods: {
-		form_submit: function(event) {
-			if (!this.task.name) {
-				return;
-			}
-
-			store.commit('add');
-		},
+	data: function() {
+		return store.state;
 	},
 };
 
@@ -6905,8 +6828,8 @@ module.exports = {
 if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;return _h('form',{on:{"submit":function($event){$event.preventDefault();_vm.form_submit($event)}}},[_h('div',{staticClass:"input-group"},[_h('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.task.name),expression:"task.name"}],staticClass:"form-control",attrs:{"type":"text","placeholder":"Buy milk 2L"},domProps:{"value":_vm._s(_vm.task.name)},on:{"input":function($event){if($event.target.composing){ return; }_vm.task.name=$event.target.value}}})," ",_vm._m(0)])])}
-__vue__options__.staticRenderFns = [function render () {var _vm=this;var _h=_vm.$createElement;return _h('span',{staticClass:"input-group-btn"},[_h('button',{staticClass:"btn btn-primary"},["Add new task"])])}]
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;return _h('h1',[_vm._s(_vm.title)])}
+__vue__options__.staticRenderFns = []
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
@@ -6917,52 +6840,7 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
     hotAPI.reload("data-v-2", __vue__options__)
   }
 })()}
-},{"./store.js":10,"vue":3,"vue-hot-reload-api":2}],8:[function(require,module,exports){
-;(function(){
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-module.exports = {
-	props: [
-		'task',
-	],
-	methods: {
-		edit_click: function(event) {
-			// update if not canceled
-			var newName = window.prompt('Task Name', this.task.name);
-			if (typeof newName === 'string') {
-				this.task.name = newName;
-			}
-		},
-	},
-};
-
-})()
-if (module.exports.__esModule) module.exports = module.exports.default
-var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
-if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;return _h('label',{staticClass:"list-group-item"},[_h('span',{staticClass:"pull-right btn btn-link",on:{"click":function($event){$event.preventDefault();_vm.edit_click($event)}}},["Edit"])," ",_h('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.task.finished),expression:"task.finished"}],attrs:{"type":"checkbox"},domProps:{"checked":Array.isArray(_vm.task.finished)?_vm._i(_vm.task.finished,null)>-1:_vm._q(_vm.task.finished,true)},on:{"change":function($event){var $$a=_vm.task.finished,$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v=null,$$i=_vm._i($$a,$$v);if($$c){$$i<0&&(_vm.task.finished=$$a.concat($$v))}else{$$i>-1&&(_vm.task.finished=$$a.slice(0,$$i).concat($$a.slice($$i+1)))}}else{_vm.task.finished=$$c}}}}),"\n\t"+_vm._s(_vm.task.name)+"\n"])}
-__vue__options__.staticRenderFns = []
-if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), true)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-3", __vue__options__)
-  } else {
-    hotAPI.reload("data-v-3", __vue__options__)
-  }
-})()}
-},{"vue":3,"vue-hot-reload-api":2}],9:[function(require,module,exports){
+},{"./store.js":8,"vue":3,"vue-hot-reload-api":2}],7:[function(require,module,exports){
 const Vue = require('vue');
 const Vuex = require('vuex');
 Vue.use(Vuex);
@@ -6976,24 +6854,13 @@ new Vue({
 	},
 });
 
-},{"./App.vue":6,"vue":3,"vuex":5}],10:[function(require,module,exports){
+},{"./App.vue":5,"vue":3,"vuex":4}],8:[function(require,module,exports){
 const Vuex = require('vuex');
 
 module.exports = new Vuex.Store({
 	state: {
-		newTask: { finished: false, name: '' },
-		tasks: [
-			{ finished: false, name: 'Buy milk 2L' },
-			{ finished: false, name: 'Call to Alice' },
-			{ finished: false, name: 'Return books' },
-		],
-	},
-	mutations: {
-		add: function(state) {
-			state.tasks.unshift(state.newTask);
-			state.newTask = { finished: false, name: '' };
-		},
+		title: 'Hello World!',
 	},
 });
 
-},{"vuex":5}]},{},[9]);
+},{"vuex":4}]},{},[7]);
