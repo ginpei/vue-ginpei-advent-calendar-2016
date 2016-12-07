@@ -1,15 +1,15 @@
 <template>
-	<div class="container">
-		<my-title></my-title>
-	</div>
+  <div class="container">
+    <my-title></my-title>
+  </div>
 </template>
 
 <script>
-	var MyTitle = require('./MyTitle.vue');
+  var MyTitle = require('./MyTitle.vue')
 
-	module.exports = {
-		components: {
-			MyTitle
-		},
-	};
+  module.exports = {
+    components: {
+      MyTitle
+    }
+  }
 </script>
