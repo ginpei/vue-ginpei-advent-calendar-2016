@@ -1,9 +1,18 @@
 <style>
+  body {
+    height: 3000px;
+  }
+  .scrollTop {
+    left: 0;
+    position: fixed;
+    top: 0;
+  }
 </style>
 
 <template>
   <div class="container">
     <h1>Vue Peraichi</h1>
+    <div class="scrollTop">Top: {{scrollTop}}</div>
   </div>
 </template>
 

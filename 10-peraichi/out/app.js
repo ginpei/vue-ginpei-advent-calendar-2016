@@ -6248,6 +6248,31 @@ module.exports = Vue$2;
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{"_process":1}],4:[function(require,module,exports){
+var inserted = exports.cache = {}
+
+function noop () {}
+
+exports.insert = function (css) {
+  if (inserted[css]) return noop
+  inserted[css] = true
+
+  var elem = document.createElement('style')
+  elem.setAttribute('type', 'text/css')
+
+  if ('textContent' in elem) {
+    elem.textContent = css
+  } else {
+    elem.styleSheet.cssText = css
+  }
+
+  document.getElementsByTagName('head')[0].appendChild(elem)
+  return function () {
+    document.getElementsByTagName('head')[0].removeChild(elem)
+    inserted[css] = false
+  }
+}
+
+},{}],5:[function(require,module,exports){
 /**
  * vuex v2.0.0
  * (c) 2016 Evan You
@@ -6776,8 +6801,18 @@ var index = {
 return index;
 
 })));
-},{}],5:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
+var __vueify_style_dispose__ = require("vueify/lib/insert-css").insert("body {\n  height: 3000px;\n}\n.scrollTop {\n  left: 0;\n  position: fixed;\n  top: 0;\n}")
 ;(function(){
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -6806,40 +6841,56 @@ module.exports = {
 if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;return _vm._m(0)}
-__vue__options__.staticRenderFns = [function render () {var _vm=this;var _h=_vm.$createElement;return _h('div',{staticClass:"container"},[_h('h1',["Vue Peraichi"])])}]
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;return _h('div',{staticClass:"container"},[_h('h1',["Vue Peraichi"])," ",_h('div',{staticClass:"scrollTop"},["Top: "+_vm._s(_vm.scrollTop)])])}
+__vue__options__.staticRenderFns = []
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
   module.hot.accept()
+  module.hot.dispose(__vueify_style_dispose__)
   if (!module.hot.data) {
     hotAPI.createRecord("data-v-1", __vue__options__)
   } else {
     hotAPI.reload("data-v-1", __vue__options__)
   }
 })()}
-},{"./store.js":7,"vue":3,"vue-hot-reload-api":2}],6:[function(require,module,exports){
+},{"./store.js":8,"vue":3,"vue-hot-reload-api":2,"vueify/lib/insert-css":4}],7:[function(require,module,exports){
 const Vue = require('vue')
 const Vuex = require('vuex')
 Vue.use(Vuex)
 
 const App = require('./App.vue')
+const store = require('./store.js')
 
-new Vue({
+const app = new Vue({
   el: '#app',
   render: function (createElement) {
     return createElement(App)
+  },
+  methods: {
+    startWatchingScroll: function () {
+      document.addEventListener('scroll', () => {
+        const scrollTop = document.body.scrollTop || document.documentElement.scrollTop
+        console.log(scrollTop)
+        store.commit('updateScrollTop', scrollTop)
+      })
+    }
   }
 })
+app.startWatchingScroll()
 
-},{"./App.vue":5,"vue":3,"vuex":4}],7:[function(require,module,exports){
+},{"./App.vue":6,"./store.js":8,"vue":3,"vuex":5}],8:[function(require,module,exports){
 const Vuex = require('vuex')
 
 module.exports = new Vuex.Store({
   state: {
+    scrollTop: 0
   },
   mutations: {
+    updateScrollTop: function (state, scrollTop) {
+      state.scrollTop = scrollTop
+    }
   }
 })
 
-},{"vuex":4}]},{},[6]);
+},{"vuex":5}]},{},[7]);
