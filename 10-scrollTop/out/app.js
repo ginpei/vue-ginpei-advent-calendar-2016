@@ -6819,21 +6819,12 @@ var __vueify_style_dispose__ = require("vueify/lib/insert-css").insert("body {\n
 //
 //
 //
-//
-//
-//
 
 var store = require('./store.js')
 
 module.exports = {
-  components: {
-  },
   data: function () {
     return store.state
-  },
-  computed: {
-  },
-  methods: {
   }
 }
 
@@ -6841,7 +6832,7 @@ module.exports = {
 if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;return _h('div',{staticClass:"container"},[_h('h1',["Vue Peraichi"])," ",_h('div',{staticClass:"scrollTop"},["Top: "+_vm._s(_vm.scrollTop)])])}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;return _h('div',{staticClass:"scrollTop"},["Top: "+_vm._s(_vm.scrollTop)])}
 __vue__options__.staticRenderFns = []
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
