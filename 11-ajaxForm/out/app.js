@@ -6787,12 +6787,72 @@ return index;
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 var store = require('./store.js')
 
 module.exports = {
   data: function () {
     return store.state
+  },
+  methods: {
+    form_submit (event) {
+      const data = {
+        text: this.text,
+        number: this.number,
+        radio: this.radio,
+        checkboxes: this.checkboxes.filter(v => v.checked).map(v => v.value),
+        select: this.select,
+        multiSelect: this.multiSelect
+      }
+      console.log(data)
+    }
   }
 }
 
@@ -6800,8 +6860,8 @@ module.exports = {
 if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;return _vm._m(0)}
-__vue__options__.staticRenderFns = [function render () {var _vm=this;var _h=_vm.$createElement;return _h('div',{staticClass:"container"},[_h('h1',["Ajax Form"])])}]
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;return _h('div',{staticClass:"container"},[_h('h1',["Ajax Form"])," ",_h('form',{attrs:{"action":"/send/something","method":"POST"},on:{"submit":function($event){$event.preventDefault();_vm.form_submit($event)}}},[_h('div',{staticClass:"form-group"},[_h('label',{attrs:{"for":"text"}},["テキスト"])," ",_h('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.text),expression:"text"}],staticClass:"form-control",attrs:{"id":"text","type":"text","name":"text","placeholder":"あいうえお"},domProps:{"value":_vm._s(_vm.text)},on:{"input":function($event){if($event.target.composing){ return; }_vm.text=$event.target.value}}})])," ",_h('div',{staticClass:"form-group"},[_h('label',{attrs:{"for":"number"}},["数値"])," ",_h('input',{directives:[{name:"model",rawName:"v-model.number",value:(_vm.number),expression:"number",modifiers:{"number":true}}],staticClass:"form-control",attrs:{"id":"number","type":"number","name":"number","placeholder":"3.14"},domProps:{"value":_vm._s(_vm.number)},on:{"input":function($event){if($event.target.composing){ return; }_vm.number=_vm._n($event.target.value)}}})])," ",_h('div',{staticClass:"form-group"},[_h('ul',[_vm._l((_vm.radioOptions),function(r){return _h('li',{staticClass:"radio"},[_h('label',[_h('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.radio),expression:"radio"}],attrs:{"type":"radio","name":"radio"},domProps:{"value":r.value,"checked":_vm._q(_vm.radio,r.value)},on:{"change":function($event){_vm.radio=r.value}}}),"\n            "+_vm._s(r.label)+"\n          "])])})])])," ",_h('div',{staticClass:"form-group"},[_h('ul',[_vm._l((_vm.checkboxes),function(c){return _h('li',{staticClass:"checkbox"},[_h('label',[_h('input',{directives:[{name:"model",rawName:"v-model",value:(c.checked),expression:"c.checked"}],attrs:{"type":"checkbox","name":"checkbox"},domProps:{"value":c.value,"checked":Array.isArray(c.checked)?_vm._i(c.checked,c.value)>-1:_vm._q(c.checked,true)},on:{"change":function($event){var $$a=c.checked,$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v=c.value,$$i=_vm._i($$a,$$v);if($$c){$$i<0&&(c.checked=$$a.concat($$v))}else{$$i>-1&&(c.checked=$$a.slice(0,$$i).concat($$a.slice($$i+1)))}}else{c.checked=$$c}}}}),"\n            "+_vm._s(c.label)+"\n          "])])})])])," ",_h('div',{staticClass:"form-group"},[_h('label',{attrs:{"for":"select"}},["セレクトボックス（単数）"])," ",_h('select',{directives:[{name:"model",rawName:"v-model",value:(_vm.select),expression:"select"}],staticClass:"form-control",attrs:{"id":"select"},on:{"change":function($event){_vm.select=Array.prototype.filter.call($event.target.options,function(o){return o.selected}).map(function(o){var val = "_value" in o ? o._value : o.value;return val})[0]}}},[_vm._l((_vm.selectOptions),function(s){return _h('option',{domProps:{"value":s.value}},["\n          "+_vm._s(s.label)+"\n        "])})])])," ",_h('div',{staticClass:"form-group"},[_h('label',{attrs:{"for":"multiSelect"}},["セレクトボックス（複数）"])," ",_h('select',{directives:[{name:"model",rawName:"v-model",value:(_vm.multiSelect),expression:"multiSelect"}],staticClass:"form-control",attrs:{"id":"multiSelect","multiple":""},on:{"change":function($event){_vm.multiSelect=Array.prototype.filter.call($event.target.options,function(o){return o.selected}).map(function(o){var val = "_value" in o ? o._value : o.value;return val})}}},[_vm._l((_vm.multiSelectOptions),function(s){return _h('option',{domProps:{"value":s.value}},["\n          "+_vm._s(s.label)+"\n        "])})])])," ",_h('button',{staticClass:"btn btn-primary"},["送信"])])])}
+__vue__options__.staticRenderFns = []
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
@@ -6831,6 +6891,39 @@ const Vuex = require('vuex')
 
 module.exports = new Vuex.Store({
   state: {
+    text: '',
+    number: 0,
+    radio: 'radio1',
+    radioOptions: [
+      { label: 'ラジオ1', value: 'radio1' },
+      { label: 'ラジオ2', value: 'radio2' },
+      { label: 'ラジオ3', value: 'radio3' },
+      { label: 'ラジオ4', value: 'radio4' },
+      { label: 'ラジオ5', value: 'radio5' }
+    ],
+    checkboxes: [
+      { label: 'チェック1', value: 'check1', checked: false },
+      { label: 'チェック2', value: 'check2', checked: false },
+      { label: 'チェック3', value: 'check3', checked: false },
+      { label: 'チェック4', value: 'check4', checked: false },
+      { label: 'チェック5', value: 'check5', checked: false }
+    ],
+    select: 'select1',
+    selectOptions: [
+      { label: 'セレクト1', value: 'select1' },
+      { label: 'セレクト2', value: 'select2' },
+      { label: 'セレクト3', value: 'select3' },
+      { label: 'セレクト4', value: 'select4' },
+      { label: 'セレクト5', value: 'select5' }
+    ],
+    multiSelect: [],
+    multiSelectOptions: [
+      { label: 'セレクト1', value: 'select1' },
+      { label: 'セレクト2', value: 'select2' },
+      { label: 'セレクト3', value: 'select3' },
+      { label: 'セレクト4', value: 'select4' },
+      { label: 'セレクト5', value: 'select5' }
+    ]
   },
   mutations: {
   }
