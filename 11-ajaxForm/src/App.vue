@@ -1,6 +1,3 @@
-<style>
-</style>
-
 <template>
   <div class="container">
     <h1>Ajax Form</h1>
@@ -27,7 +24,7 @@
         <ul>
           <li v-for="c in checkboxes" class="checkbox">
             <label>
-              <input v-model="c.checked" :value="c.value" type="checkbox" name="checkbox" />
+              <input v-model="c.checked" type="checkbox" name="checkbox" />
               {{c.label}}
             </label>
           </li>
@@ -67,11 +64,17 @@
           text: this.text,
           number: this.number,
           radio: this.radio,
-          checkboxes: this.checkboxes.filter(v => v.checked).map(v => v.value),
+          checkboxes: this.checkboxes
+            .filter(v => v.checked)
+            .map(v => v.value),
           select: this.select,
           multiSelect: this.multiSelect
         }
         console.log(data)
+
+        const checkboxes = this.checkboxes
+          .reduce((o, v) => { o[v.value] = v.checked; return o }, {})
+        console.log('checkboxes', checkboxes)
       }
     }
   }

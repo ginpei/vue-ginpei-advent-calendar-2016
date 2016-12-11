@@ -35,7 +35,5 @@ module.exports = new Vuex.Store({
       { label: 'セレクト4', value: 'select4' },
       { label: 'セレクト5', value: 'select5' }
     ]
-  },
-  mutations: {
   }
 })
