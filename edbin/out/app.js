@@ -6248,6 +6248,31 @@ module.exports = Vue$2;
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{"_process":1}],4:[function(require,module,exports){
+var inserted = exports.cache = {}
+
+function noop () {}
+
+exports.insert = function (css) {
+  if (inserted[css]) return noop
+  inserted[css] = true
+
+  var elem = document.createElement('style')
+  elem.setAttribute('type', 'text/css')
+
+  if ('textContent' in elem) {
+    elem.textContent = css
+  } else {
+    elem.styleSheet.cssText = css
+  }
+
+  document.getElementsByTagName('head')[0].appendChild(elem)
+  return function () {
+    document.getElementsByTagName('head')[0].removeChild(elem)
+    inserted[css] = false
+  }
+}
+
+},{}],5:[function(require,module,exports){
 /**
  * vuex v2.0.0
  * (c) 2016 Evan You
@@ -6776,8 +6801,22 @@ var index = {
 return index;
 
 })));
-},{}],5:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
+var __vueify_style_dispose__ = require("vueify/lib/insert-css").insert(".dropzone {\n  border: 2px solid #090;\n}\n.dropzone.dragging {\n  background-color: #efe;\n}")
 ;(function(){
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -6791,6 +6830,21 @@ var store = require('./store.js')
 module.exports = {
   data: function () {
     return store.state
+  },
+  methods: {
+    dropzone_dragover: function (event) {
+      store.commit('setDragging', true)
+    },
+    dropzone_dragleave: function (event) {
+      store.commit('setDragging', false)
+    },
+    dropzone_drop: function (event) {
+      store.commit('setDragging', false)
+
+      const files = event.dataTransfer.files
+      const file = files[0]
+      store.commit('setFile', file)
+    }
   }
 }
 
@@ -6798,19 +6852,20 @@ module.exports = {
 if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;return _h('h1',[_vm._s(_vm.message)])}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;return _h('div',{staticClass:"container dropzone",class:{ dragging: _vm.dragging },on:{"dragover":function($event){$event.preventDefault();_vm.dropzone_dragover($event)},"dragleave":function($event){$event.preventDefault();_vm.dropzone_dragleave($event)},"drop":function($event){$event.preventDefault();_vm.dropzone_drop($event)}}},[(!_vm.file)?_h('h1',["Drop Here!"]):_vm._e()," ",(_vm.file)?_h('ul',[_h('li',["Name: "+_vm._s(_vm.file.name)])," ",_h('li',["Size: "+_vm._s(_vm.file.size)])," ",_h('li',["Type: "+_vm._s(_vm.file.type)])]):_vm._e()])}
 __vue__options__.staticRenderFns = []
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
   module.hot.accept()
+  module.hot.dispose(__vueify_style_dispose__)
   if (!module.hot.data) {
     hotAPI.createRecord("data-v-1", __vue__options__)
   } else {
     hotAPI.reload("data-v-1", __vue__options__)
   }
 })()}
-},{"./store.js":7,"vue":3,"vue-hot-reload-api":2}],6:[function(require,module,exports){
+},{"./store.js":8,"vue":3,"vue-hot-reload-api":2,"vueify/lib/insert-css":4}],7:[function(require,module,exports){
 const Vue = require('vue')
 const Vuex = require('vuex')
 Vue.use(Vuex)
@@ -6824,15 +6879,22 @@ new Vue({
   }
 })
 
-},{"./App.vue":5,"vue":3,"vuex":4}],7:[function(require,module,exports){
+},{"./App.vue":6,"vue":3,"vuex":5}],8:[function(require,module,exports){
 const Vuex = require('vuex')
 
 module.exports = new Vuex.Store({
   state: {
-    message: 'EdBin'
+    dragging: false,
+    file: null
   },
   mutations: {
+    setDragging: function (state, dragging) {
+      state.dragging = dragging
+    },
+    setFile: function (state, file) {
+      state.file = file
+    }
   }
 })
 
-},{"vuex":4}]},{},[6]);
+},{"vuex":5}]},{},[7]);
