@@ -6802,8 +6802,38 @@ return index;
 
 })));
 },{}],6:[function(require,module,exports){
-var __vueify_style_dispose__ = require("vueify/lib/insert-css").insert(".dropzone {\n  border: 2px solid #090;\n}\n.dropzone.dragging {\n  background-color: #efe;\n}")
+var __vueify_style_dispose__ = require("vueify/lib/insert-css").insert(".dropzone {\n  border: 2px solid #090;\n}\n.dropzone.dragging {\n  background-color: #efe;\n}\n.binTable-table {\n  font-family: monospace;\n  width: auto;\n}\n.binTable-table > thead > tr > th,\n.binTable-table > tbody > tr > td {\n  padding: 0 0.2em;\n  text-align: center;\n  width: 1em;\n}\n.binTable-location {\n  background-color: #ccc;\n  text-align: right;\n}")
 ;(function(){
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -6831,7 +6861,29 @@ module.exports = {
   data: function () {
     return store.state
   },
+  computed: {
+    lines: function () {
+      const lines = []
+
+      const buffer = this.buffer
+      if (buffer) {
+        for (let i = 0; i < 16; i++) {
+          lines.push(this.createLine(buffer, i * 16))
+        }
+      }
+      return lines
+    }
+  },
   methods: {
+    createLine: function (buffer, offset) {
+      const sArr = []
+      const arr = new window.Uint8Array(buffer, offset, 16)
+      arr.forEach(byte => {
+        const sByte = byte.toString(16).toUpperCase()
+        sArr.push(byte < 16 ? '0' + sByte : sByte)
+      })
+      return sArr
+    },
     dropzone_dragover: function (event) {
       store.commit('setDragging', true)
     },
@@ -6844,6 +6896,16 @@ module.exports = {
       const files = event.dataTransfer.files
       const file = files[0]
       store.commit('setFile', file)
+
+      const reader = new window.FileReader()
+      reader.onload = (event) => {
+        this.fileBuffer_loaded(event)
+      }
+      reader.readAsArrayBuffer(file)
+    },
+    fileBuffer_loaded: function (event) {
+      const buffer = event.target.result
+      store.commit('setBuffer', buffer)
     }
   }
 }
@@ -6852,7 +6914,7 @@ module.exports = {
 if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;return _h('div',{staticClass:"container dropzone",class:{ dragging: _vm.dragging },on:{"dragover":function($event){$event.preventDefault();_vm.dropzone_dragover($event)},"dragleave":function($event){$event.preventDefault();_vm.dropzone_dragleave($event)},"drop":function($event){$event.preventDefault();_vm.dropzone_drop($event)}}},[(!_vm.file)?_h('h1',["Drop Here!"]):_vm._e()," ",(_vm.file)?_h('ul',[_h('li',["Name: "+_vm._s(_vm.file.name)])," ",_h('li',["Size: "+_vm._s(_vm.file.size)])," ",_h('li',["Type: "+_vm._s(_vm.file.type)])]):_vm._e()])}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;return _h('div',{staticClass:"container"},[_h('div',{staticClass:"dropzone",class:{ dragging: _vm.dragging },on:{"dragover":function($event){$event.preventDefault();_vm.dropzone_dragover($event)},"dragleave":function($event){$event.preventDefault();_vm.dropzone_dragleave($event)},"drop":function($event){$event.preventDefault();_vm.dropzone_drop($event)}}},[(!_vm.file)?_h('h1',["Drop Here!"]):_vm._e()," ",(_vm.file)?_h('ul',[_h('li',["Name: "+_vm._s(_vm.file.name)])," ",_h('li',["Size: "+_vm._s(_vm.file.size)])," ",_h('li',["Type: "+_vm._s(_vm.file.type)])]):_vm._e()])," ",(_vm.lines.length > 0)?_h('table',{staticClass:"table binTable-table"},[_h('thead',[_h('tr',{staticClass:"binTable-location"},[_h('th')," ",_vm._l((16),function(n){return _h('th',[_vm._s(n)])})])])," ",_h('tbody',[_vm._l((_vm.lines),function(line,index){return _h('tr',[_h('td',{staticClass:"binTable-location"},[_vm._s(index.toString(16).toUpperCase())])," ",_vm._l((line),function(byte){return _h('td',[_vm._s(byte)])})])})])]):_vm._e()])}
 __vue__options__.staticRenderFns = []
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -6884,10 +6946,14 @@ const Vuex = require('vuex')
 
 module.exports = new Vuex.Store({
   state: {
+    buffer: null,
     dragging: false,
     file: null
   },
   mutations: {
+    setBuffer: function (state, buffer) {
+      state.buffer = buffer
+    },
     setDragging: function (state, dragging) {
       state.dragging = dragging
     },
