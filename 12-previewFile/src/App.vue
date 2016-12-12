@@ -59,7 +59,7 @@
       </div>
       <ul v-if="form.files.length > 0">
         <li v-for="(file, index) in form.files">
-          {{index + 1}}
+          #{{index + 1}}
           <ul>
             <li>名前: {{file.name}}</li>
             <li>サイズ: {{file.size.toLocaleString()}} bytes</li>
