@@ -19,7 +19,6 @@ module.exports = new Vuex.Store({
           data.previewImageSrc = window.URL.createObjectURL(file)
         }
         if (file.type.startsWith('text/')) {
-          // Is it OK to load file async here?
           data.textContent = 'loading...'
 
           const reader = new window.FileReader()
