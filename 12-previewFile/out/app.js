@@ -6832,27 +6832,29 @@ return index;
 //
 //
 
-var store = require('./store.js')
+var form = require('./form.js')
 
 module.exports = {
   data: function () {
-    return store.state
+    return {
+      form: form.state
+    }
   },
   methods: {
     form_submit (event) {
       const data = {
-        text: this.text,
-        number: this.number,
-        radio: this.radio,
-        checkboxes: this.checkboxes
+        text: this.form.text,
+        number: this.form.number,
+        radio: this.form.radio,
+        checkboxes: this.form.checkboxes
           .filter(v => v.checked)
           .map(v => v.value),
-        select: this.select,
-        multiSelect: this.multiSelect
+        select: this.form.select,
+        multiSelect: this.form.multiSelect
       }
       console.log(data)
 
-      const checkboxes = this.checkboxes
+      const checkboxes = this.form.checkboxes
         .reduce((o, v) => { o[v.value] = v.checked; return o }, {})
       console.log('checkboxes', checkboxes)
     }
@@ -6863,7 +6865,7 @@ module.exports = {
 if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;return _h('div',{staticClass:"container"},[_h('h1',["Ajax Form"])," ",_h('form',{attrs:{"action":"/send/something","method":"POST"},on:{"submit":function($event){$event.preventDefault();_vm.form_submit($event)}}},[_h('div',{staticClass:"form-group"},[_h('label',{attrs:{"for":"text"}},["テキスト"])," ",_h('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.text),expression:"text"}],staticClass:"form-control",attrs:{"id":"text","type":"text","name":"text","placeholder":"あいうえお"},domProps:{"value":_vm._s(_vm.text)},on:{"input":function($event){if($event.target.composing){ return; }_vm.text=$event.target.value}}})])," ",_h('div',{staticClass:"form-group"},[_h('label',{attrs:{"for":"number"}},["数値"])," ",_h('input',{directives:[{name:"model",rawName:"v-model.number",value:(_vm.number),expression:"number",modifiers:{"number":true}}],staticClass:"form-control",attrs:{"id":"number","type":"number","name":"number","placeholder":"3.14"},domProps:{"value":_vm._s(_vm.number)},on:{"input":function($event){if($event.target.composing){ return; }_vm.number=_vm._n($event.target.value)}}})])," ",_h('div',{staticClass:"form-group"},[_h('ul',[_vm._l((_vm.radioOptions),function(r){return _h('li',{staticClass:"radio"},[_h('label',[_h('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.radio),expression:"radio"}],attrs:{"type":"radio","name":"radio"},domProps:{"value":r.value,"checked":_vm._q(_vm.radio,r.value)},on:{"change":function($event){_vm.radio=r.value}}}),"\n            "+_vm._s(r.label)+"\n          "])])})])])," ",_h('div',{staticClass:"form-group"},[_h('ul',[_vm._l((_vm.checkboxes),function(c){return _h('li',{staticClass:"checkbox"},[_h('label',[_h('input',{directives:[{name:"model",rawName:"v-model",value:(c.checked),expression:"c.checked"}],attrs:{"type":"checkbox","name":"checkbox"},domProps:{"checked":Array.isArray(c.checked)?_vm._i(c.checked,null)>-1:_vm._q(c.checked,true)},on:{"change":function($event){var $$a=c.checked,$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v=null,$$i=_vm._i($$a,$$v);if($$c){$$i<0&&(c.checked=$$a.concat($$v))}else{$$i>-1&&(c.checked=$$a.slice(0,$$i).concat($$a.slice($$i+1)))}}else{c.checked=$$c}}}}),"\n            "+_vm._s(c.label)+"\n          "])])})])])," ",_h('div',{staticClass:"form-group"},[_h('label',{attrs:{"for":"select"}},["セレクトボックス（単数）"])," ",_h('select',{directives:[{name:"model",rawName:"v-model",value:(_vm.select),expression:"select"}],staticClass:"form-control",attrs:{"id":"select"},on:{"change":function($event){_vm.select=Array.prototype.filter.call($event.target.options,function(o){return o.selected}).map(function(o){var val = "_value" in o ? o._value : o.value;return val})[0]}}},[_vm._l((_vm.selectOptions),function(s){return _h('option',{domProps:{"value":s.value}},["\n          "+_vm._s(s.label)+"\n        "])})])])," ",_h('div',{staticClass:"form-group"},[_h('label',{attrs:{"for":"multiSelect"}},["セレクトボックス（複数）"])," ",_h('select',{directives:[{name:"model",rawName:"v-model",value:(_vm.multiSelect),expression:"multiSelect"}],staticClass:"form-control",attrs:{"id":"multiSelect","multiple":""},on:{"change":function($event){_vm.multiSelect=Array.prototype.filter.call($event.target.options,function(o){return o.selected}).map(function(o){var val = "_value" in o ? o._value : o.value;return val})}}},[_vm._l((_vm.multiSelectOptions),function(s){return _h('option',{domProps:{"value":s.value}},["\n          "+_vm._s(s.label)+"\n        "])})])])," ",_h('button',{staticClass:"btn btn-primary"},["送信"])])])}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;return _h('div',{staticClass:"container"},[_h('h1',["Ajax Form"])," ",_h('form',{attrs:{"action":"/send/something","method":"POST"},on:{"submit":function($event){$event.preventDefault();_vm.form_submit($event)}}},[_h('div',{staticClass:"form-group"},[_h('label',{attrs:{"for":"text"}},["テキスト"])," ",_h('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.form.text),expression:"form.text"}],staticClass:"form-control",attrs:{"id":"text","type":"text","name":"text","placeholder":"あいうえお"},domProps:{"value":_vm._s(_vm.form.text)},on:{"input":function($event){if($event.target.composing){ return; }_vm.form.text=$event.target.value}}})])," ",_h('div',{staticClass:"form-group"},[_h('label',{attrs:{"for":"number"}},["数値"])," ",_h('input',{directives:[{name:"model",rawName:"v-model.number",value:(_vm.form.number),expression:"form.number",modifiers:{"number":true}}],staticClass:"form-control",attrs:{"id":"number","type":"number","name":"number","placeholder":"3.14"},domProps:{"value":_vm._s(_vm.form.number)},on:{"input":function($event){if($event.target.composing){ return; }_vm.form.number=_vm._n($event.target.value)}}})])," ",_h('div',{staticClass:"form-group"},[_h('ul',[_vm._l((_vm.form.radioOptions),function(r){return _h('li',{staticClass:"radio"},[_h('label',[_h('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.form.radio),expression:"form.radio"}],attrs:{"type":"radio","name":"radio"},domProps:{"value":r.value,"checked":_vm._q(_vm.form.radio,r.value)},on:{"change":function($event){_vm.form.radio=r.value}}}),"\n            "+_vm._s(r.label)+"\n          "])])})])])," ",_h('div',{staticClass:"form-group"},[_h('ul',[_vm._l((_vm.form.checkboxes),function(c){return _h('li',{staticClass:"checkbox"},[_h('label',[_h('input',{directives:[{name:"model",rawName:"v-model",value:(c.checked),expression:"c.checked"}],attrs:{"type":"checkbox","name":"checkbox"},domProps:{"checked":Array.isArray(c.checked)?_vm._i(c.checked,null)>-1:_vm._q(c.checked,true)},on:{"change":function($event){var $$a=c.checked,$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v=null,$$i=_vm._i($$a,$$v);if($$c){$$i<0&&(c.checked=$$a.concat($$v))}else{$$i>-1&&(c.checked=$$a.slice(0,$$i).concat($$a.slice($$i+1)))}}else{c.checked=$$c}}}}),"\n            "+_vm._s(c.label)+"\n          "])])})])])," ",_h('div',{staticClass:"form-group"},[_h('label',{attrs:{"for":"select"}},["セレクトボックス（単数）"])," ",_h('select',{directives:[{name:"model",rawName:"v-model",value:(_vm.form.select),expression:"form.select"}],staticClass:"form-control",attrs:{"id":"select"},on:{"change":function($event){_vm.form.select=Array.prototype.filter.call($event.target.options,function(o){return o.selected}).map(function(o){var val = "_value" in o ? o._value : o.value;return val})[0]}}},[_vm._l((_vm.form.selectOptions),function(s){return _h('option',{domProps:{"value":s.value}},["\n          "+_vm._s(s.label)+"\n        "])})])])," ",_h('div',{staticClass:"form-group"},[_h('label',{attrs:{"for":"multiSelect"}},["セレクトボックス（複数）"])," ",_h('select',{directives:[{name:"model",rawName:"v-model",value:(_vm.form.multiSelect),expression:"form.multiSelect"}],staticClass:"form-control",attrs:{"id":"multiSelect","multiple":""},on:{"change":function($event){_vm.form.multiSelect=Array.prototype.filter.call($event.target.options,function(o){return o.selected}).map(function(o){var val = "_value" in o ? o._value : o.value;return val})}}},[_vm._l((_vm.form.multiSelectOptions),function(s){return _h('option',{domProps:{"value":s.value}},["\n          "+_vm._s(s.label)+"\n        "])})])])," ",_h('button',{staticClass:"btn btn-primary"},["送信"])])])}
 __vue__options__.staticRenderFns = []
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -6875,21 +6877,7 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
     hotAPI.reload("data-v-1", __vue__options__)
   }
 })()}
-},{"./store.js":7,"vue":3,"vue-hot-reload-api":2}],6:[function(require,module,exports){
-const Vue = require('vue')
-const Vuex = require('vuex')
-Vue.use(Vuex)
-
-const App = require('./App.vue')
-
-new Vue({
-  el: '#app',
-  render: function (createElement) {
-    return createElement(App)
-  }
-})
-
-},{"./App.vue":5,"vue":3,"vuex":4}],7:[function(require,module,exports){
+},{"./form.js":6,"vue":3,"vue-hot-reload-api":2}],6:[function(require,module,exports){
 const Vuex = require('vuex')
 
 module.exports = new Vuex.Store({
@@ -6930,4 +6918,18 @@ module.exports = new Vuex.Store({
   }
 })
 
-},{"vuex":4}]},{},[6]);
+},{"vuex":4}],7:[function(require,module,exports){
+const Vue = require('vue')
+const Vuex = require('vuex')
+Vue.use(Vuex)
+
+const App = require('./App.vue')
+
+new Vue({
+  el: '#app',
+  render: function (createElement) {
+    return createElement(App)
+  }
+})
+
+},{"./App.vue":5,"vue":3,"vuex":4}]},{},[7]);
