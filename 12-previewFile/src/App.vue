@@ -55,7 +55,7 @@
       </div>
       <div class="form-group">
         <label for="file">ファイル（複数）</label>
-        <input @change="file_change" ref="file" class="form-control" type="file" multiple />
+        <input @change="file_change" ref="file" type="file" multiple />
       </div>
       <ul v-if="form.files.length > 0">
         <li v-for="(file, index) in form.files">
