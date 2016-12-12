@@ -69,7 +69,7 @@
             </li>
             <li v-if="file.textContent">
               ファイル冒頭:
-              <pre>{{file.textContent.slice(0, 128)}}<template v-if="file.textContent.length > 128">…</template></pre>
+              <pre>{{file.textContent | textPreview}}</pre>
             </li>
           </ul>
         </li>
