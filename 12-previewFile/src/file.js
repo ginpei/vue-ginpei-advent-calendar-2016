@@ -1,7 +1,5 @@
 const Vuex = require('vuex')
 
-// const URL_BLANK_IMAGE = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'
-
 module.exports = new Vuex.Store({
   state: {
     files: []

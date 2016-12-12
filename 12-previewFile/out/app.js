@@ -6943,8 +6943,6 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
 },{"./file.js":7,"./form.js":8,"vue":3,"vue-hot-reload-api":2,"vueify/lib/insert-css":4}],7:[function(require,module,exports){
 const Vuex = require('vuex')
 
-// const URL_BLANK_IMAGE = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'
-
 module.exports = new Vuex.Store({
   state: {
     files: []
