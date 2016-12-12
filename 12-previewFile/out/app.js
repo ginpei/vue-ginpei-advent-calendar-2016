@@ -6919,7 +6919,6 @@ module.exports = {
     file_change (event) {
       const files = event.target.files
       file.commit('setFiles', files)
-      console.log(file.state.files.length, files.length, this.file.files.length)
     }
   }
 }
