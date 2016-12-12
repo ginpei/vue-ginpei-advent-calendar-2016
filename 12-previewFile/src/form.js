@@ -34,6 +34,36 @@ module.exports = new Vuex.Store({
       { label: 'セレクト3', value: 'select3' },
       { label: 'セレクト4', value: 'select4' },
       { label: 'セレクト5', value: 'select5' }
-    ]
+    ],
+    files: []
+  },
+  mutations: {
+    setFiles (state, files) {
+      state.files = []
+      Array.prototype.forEach.call(files, file => {
+        const data = {
+          name: file.name,
+          size: file.size,
+          type: file.type
+        }
+
+        if (file.type.startsWith('image/')) {
+          data.previewImageSrc = window.URL.createObjectURL(file)
+        }
+
+        if (file.type.startsWith('text/')) {
+          data.textContent = 'loading...'
+
+          const reader = new window.FileReader()
+          reader.onloadend = event => {
+            const text = event.target.result
+            data.textContent = text
+          }
+          reader.readAsText(file)
+        }
+
+        state.files.push(data)
+      })
+    }
   }
 })
