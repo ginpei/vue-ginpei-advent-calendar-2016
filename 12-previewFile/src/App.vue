@@ -55,7 +55,7 @@
       </div>
       <div class="form-group">
         <label for="file">ファイル（複数）</label>
-        <input @change="file_change" class="form-control" type="file" multiple />
+        <input @change="file_change" ref="file" class="form-control" type="file" multiple />
       </div>
       <ul v-if="file.files.length > 0">
         <li v-for="(file, index) in file.files">
@@ -110,7 +110,8 @@
       },
 
       file_change (event) {
-        const files = event.target.files
+        const elFile = this.$refs.file
+        const files = elFile.files
         file.commit('setFiles', files)
       }
     }
