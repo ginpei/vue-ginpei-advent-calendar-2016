@@ -1,3 +1,10 @@
+<style>
+  .form-files-imagePreview {
+    max-height: 100px;
+    max-width: 100px;
+  }
+</style>
+
 <template>
   <div class="container">
     <h1>Ajax Form</h1>
@@ -57,6 +64,9 @@
             <li>名前: {{file.name}}</li>
             <li>サイズ: {{file.size}}</li>
             <li>種類: {{file.type}}</li>
+            <li v-if="file.previewImageSrc">
+              <img :src="file.previewImageSrc" :alt="`${file.name}のプレビュー画像`" class="form-files-imagePreview" />
+            </li>
           </ul>
         </li>
       </ul>
