@@ -67,6 +67,11 @@
             <li v-if="file.previewImageSrc">
               <img :src="file.previewImageSrc" :alt="`${file.name}のプレビュー画像`" class="form-files-imagePreview" />
             </li>
+            <li v-if="file.textContent">
+              ファイル冒頭:
+              {{file.textContent.slice(0, 128)}}
+              <template v-if="file.textContent.length > 128">…</template>
+            </li>
           </ul>
         </li>
       </ul>
