@@ -62,7 +62,7 @@
           {{index + 1}}
           <ul>
             <li>名前: {{file.name}}</li>
-            <li>サイズ: {{file.size}}</li>
+            <li>サイズ: {{file.size.toLocaleString()}} bytes</li>
             <li>種類: {{file.type}}</li>
             <li v-if="file.previewImageSrc">
               <img :src="file.previewImageSrc" :alt="`${file.name}のプレビュー画像`" class="form-files-imagePreview" />
