@@ -46,6 +46,20 @@
           </option>
         </select>
       </div>
+      <div class="form-group">
+        <label for="file">ファイル（複数）</label>
+        <input @change="file_change" class="form-control" type="file" multiple />
+      </div>
+      <ul v-if="file.files.length > 0">
+        <li v-for="(file, index) in file.files">
+          {{index + 1}}
+          <ul>
+            <li>名前: {{file.name}}</li>
+            <li>サイズ: {{file.size}}</li>
+            <li>種類: {{file.type}}</li>
+          </ul>
+        </li>
+      </ul>
       <button class="btn btn-primary">送信</button>
     </form>
   </div>
@@ -53,10 +67,12 @@
 
 <script>
   var form = require('./form.js')
+  var file = require('./file.js')
 
   module.exports = {
     data: function () {
       return {
+        file: file.state,
         form: form.state
       }
     },
@@ -77,6 +93,12 @@
         const checkboxes = this.form.checkboxes
           .reduce((o, v) => { o[v.value] = v.checked; return o }, {})
         console.log('checkboxes', checkboxes)
+      },
+
+      file_change (event) {
+        const files = event.target.files
+        file.commit('setFiles', files)
+        console.log(file.state.files.length, files.length, this.file.files.length)
       }
     }
   }
