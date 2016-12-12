@@ -6959,9 +6959,11 @@ module.exports = new Vuex.Store({
           size: file.size,
           type: file.type
         }
+
         if (file.type.startsWith('image/')) {
           data.previewImageSrc = window.URL.createObjectURL(file)
         }
+
         if (file.type.startsWith('text/')) {
           data.textContent = 'loading...'
 
@@ -6972,6 +6974,7 @@ module.exports = new Vuex.Store({
           }
           reader.readAsText(file)
         }
+
         state.files.push(data)
       })
     }
