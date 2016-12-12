@@ -39,8 +39,7 @@ module.exports = new Vuex.Store({
   },
   mutations: {
     setFiles (state, files) {
-      state.files = []
-      Array.prototype.forEach.call(files, file => {
+      state.files = Array.from(files).map(file => {
         const data = {
           name: file.name,
           size: file.size,
@@ -62,7 +61,7 @@ module.exports = new Vuex.Store({
           reader.readAsText(file)
         }
 
-        state.files.push(data)
+        return data
       })
     }
   }
