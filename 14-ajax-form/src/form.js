@@ -35,7 +35,8 @@ module.exports = new Vuex.Store({
       { label: 'セレクト4', value: 'select4' },
       { label: 'セレクト5', value: 'select5' }
     ],
-    files: []
+    files: [],
+    bad: false
   },
   mutations: {
     setFiles (state, files) {

@@ -83,7 +83,10 @@
           </option>
         </select>
       </div>
-      <button :class="{ loading: sending }" :disabled="sending" class="btn btn-primary ajaxButton">送信</button>
+      <p>
+        <button :class="{ loading: sending }" :disabled="sending" class="btn btn-primary ajaxButton">送信</button>
+        <label><input v-model="form.bad" type="checkbox" name="bad" /> Bad Request (400)</label>
+      </p>
     </form>
   </div>
 </template>
@@ -109,7 +112,8 @@
             .filter(v => v.checked)
             .map(v => v.value),
           select: this.form.select,
-          multiSelect: this.form.multiSelect
+          multiSelect: this.form.multiSelect,
+          bad: this.form.bad
         }
         this._submit(data)
       },
