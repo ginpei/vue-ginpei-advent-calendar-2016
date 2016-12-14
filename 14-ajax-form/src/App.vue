@@ -3,6 +3,36 @@
     max-height: 100px;
     max-width: 100px;
   }
+
+  /* http://qiita.com/ginpei/items/d9fe884574d8b5751f07 */
+  .ajaxButton {
+    overflow: hidden;
+    position: relative;
+  }
+  .ajaxButton.loading::before {
+    background-color: rgba(0,0,0,.5);
+    content: "";
+    display: block;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+  .ajaxButton.loading::after {
+    animation: rotate 1s infinite linear;
+    content: "*";
+    color: #fff;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+  @keyframes rotate {
+    0% { transform: rotate(0); }
+    100% { transform: rotate(360deg); }
+  }
 </style>
 
 <template>
@@ -53,18 +83,20 @@
           </option>
         </select>
       </div>
-      <button class="btn btn-primary">送信</button>
+      <button :class="{ loading: sending }" :disabled="sending" class="btn btn-primary ajaxButton">送信</button>
     </form>
   </div>
 </template>
 
 <script>
+  const axios = require('axios')
   var form = require('./form.js')
 
   module.exports = {
     data: function () {
       return {
-        form: form.state
+        form: form.state,
+        sending: false
       }
     },
     methods: {
@@ -83,7 +115,17 @@
       },
 
       _submit (data) {
-        console.log(data)
+        this.sending = true
+
+        const URL = './echo.php'
+        axios.post(URL, data)
+          .then(res => {
+            this.sending = false
+            console.log(res.data)
+          }, error => {
+            this.sending = false
+            throw error
+          })
       }
     }
   }

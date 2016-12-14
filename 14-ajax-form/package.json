@@ -7,6 +7,7 @@
     "vue-watch": "chokidar src/* -c 'npm run vue-lint && npm run vue-build && echo OK \\(`date`\\)'"
   },
   "dependencies": {
+    "axios": "^0.15.3",
     "browserify": "^13.1.1",
     "chokidar-cli": "^1.2.0",
     "eslint": "^3.11.1",
