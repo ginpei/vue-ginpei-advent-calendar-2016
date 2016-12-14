@@ -1,9 +1,4 @@
 <style>
-  .form-files-imagePreview {
-    max-height: 100px;
-    max-width: 100px;
-  }
-
   /* http://qiita.com/ginpei/items/d9fe884574d8b5751f07 */
   .ajaxButton {
     overflow: hidden;

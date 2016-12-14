@@ -8255,13 +8255,8 @@ return index;
 
 })));
 },{}],31:[function(require,module,exports){
-var __vueify_style_dispose__ = require("vueify/lib/insert-css").insert(".form-files-imagePreview {\n  max-height: 100px;\n  max-width: 100px;\n}\n\n/* http://qiita.com/ginpei/items/d9fe884574d8b5751f07 */\n.ajaxButton {\n  overflow: hidden;\n  position: relative;\n}\n.ajaxButton.loading::before {\n  background-color: rgba(0,0,0,.5);\n  content: \"\";\n  display: block;\n  height: 100%;\n  left: 0;\n  position: absolute;\n  top: 0;\n  width: 100%;\n}\n.ajaxButton.loading::after {\n  animation: rotate 1s infinite linear;\n  content: \"*\";\n  color: #fff;\n  height: 100%;\n  left: 0;\n  position: absolute;\n  top: 0;\n  width: 100%;\n}\n@keyframes rotate {\n  0% { transform: rotate(0); }\n  100% { transform: rotate(360deg); }\n}")
+var __vueify_style_dispose__ = require("vueify/lib/insert-css").insert("/* http://qiita.com/ginpei/items/d9fe884574d8b5751f07 */\n.ajaxButton {\n  overflow: hidden;\n  position: relative;\n}\n.ajaxButton.loading::before {\n  background-color: rgba(0,0,0,.5);\n  content: \"\";\n  display: block;\n  height: 100%;\n  left: 0;\n  position: absolute;\n  top: 0;\n  width: 100%;\n}\n.ajaxButton.loading::after {\n  animation: rotate 1s infinite linear;\n  content: \"*\";\n  color: #fff;\n  height: 100%;\n  left: 0;\n  position: absolute;\n  top: 0;\n  width: 100%;\n}\n@keyframes rotate {\n  0% { transform: rotate(0); }\n  100% { transform: rotate(360deg); }\n}")
 ;(function(){
-//
-//
-//
-//
-//
 //
 //
 //
@@ -8448,36 +8443,9 @@ module.exports = new Vuex.Store({
       { label: 'セレクト4', value: 'select4' },
       { label: 'セレクト5', value: 'select5' }
     ],
-    files: [],
     bad: false
   },
   mutations: {
-    setFiles (state, files) {
-      state.files = Array.from(files).map(file => {
-        const data = {
-          name: file.name,
-          size: file.size,
-          type: file.type
-        }
-
-        if (file.type.startsWith('image/')) {
-          data.previewImageSrc = window.URL.createObjectURL(file)
-        }
-
-        if (file.type.startsWith('text/')) {
-          data.textContent = 'loading...'
-
-          const reader = new window.FileReader()
-          reader.onloadend = event => {
-            const text = event.target.result
-            data.textContent = text
-          }
-          reader.readAsText(file)
-        }
-
-        return data
-      })
-    }
   }
 })
 
