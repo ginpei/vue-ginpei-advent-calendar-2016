@@ -6386,13 +6386,11 @@ module.exports = Vue$2;
 //
 //
 //
-//
-//
 
-const UserItem = require('./UserItem.vue')
+const UserList = require('./UserList.vue')
 
 module.exports = {
-  components: { UserItem },
+  components: { UserList },
   data: function () {
     return {
       users: [
@@ -6408,7 +6406,7 @@ module.exports = {
 if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;return _c('div',{staticClass:"gHeader"},[_c('ul',_vm._l((_vm.users),function(u){return _c('user-item',{attrs:{"name":u.name,"age":u.age}})}))])}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;return _c('div',{staticClass:"gHeader"},[_c('user-list',{attrs:{"users":_vm.users}})])}
 __vue__options__.staticRenderFns = []
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -6420,7 +6418,7 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
     hotAPI.reload("data-v-5596cc67", __vue__options__)
   }
 })()}
-},{"./UserItem.vue":6,"vue":4,"vue-hot-reload-api":2}],6:[function(require,module,exports){
+},{"./UserList.vue":7,"vue":4,"vue-hot-reload-api":2}],6:[function(require,module,exports){
 ;(function(){
 //
 //
@@ -6453,6 +6451,41 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   }
 })()}
 },{"vue":4,"vue-hot-reload-api":2,"vue-props-template":3}],7:[function(require,module,exports){
+;(function(){
+//
+//
+//
+//
+//
+//
+
+const pt = require('vue-props-template')
+const UserItem = require('./UserItem.vue')
+
+module.exports = {
+  components: { UserItem },
+  props: pt`
+    array users
+  `
+}
+
+})()
+if (module.exports.__esModule) module.exports = module.exports.default
+var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
+if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;return _c('ul',_vm._l((_vm.users),function(u){return _c('user-item',{attrs:{"name":u.name,"age":u.age}})}))}
+__vue__options__.staticRenderFns = []
+if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-58c18db3", __vue__options__)
+  } else {
+    hotAPI.reload("data-v-58c18db3", __vue__options__)
+  }
+})()}
+},{"./UserItem.vue":6,"vue":4,"vue-hot-reload-api":2,"vue-props-template":3}],8:[function(require,module,exports){
 const Vue = require('vue')
 
 var App = require('./App.vue')
@@ -6464,4 +6497,4 @@ new Vue({
   }
 })
 
-},{"./App.vue":5,"vue":4}]},{},[7]);
+},{"./App.vue":5,"vue":4}]},{},[8]);

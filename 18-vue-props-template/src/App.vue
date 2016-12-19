@@ -1,16 +1,14 @@
 <template>
   <div class="gHeader">
-    <ul>
-      <user-item v-for="u in users" :name="u.name" :age="u.age"></user-item>
-    </ul>
+    <user-list :users="users"></user-list>
   </div>
 </template>
 
 <script>
-  const UserItem = require('./UserItem.vue')
+  const UserList = require('./UserList.vue')
 
   module.exports = {
-    components: { UserItem },
+    components: { UserList },
     data: function () {
       return {
         users: [
