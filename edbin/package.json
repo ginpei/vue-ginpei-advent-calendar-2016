@@ -4,7 +4,7 @@
     "start": "npm run vue-watch",
     "vue-build": "browserify -t vueify -e src/main.js -o out/app.js ",
     "vue-lint": "eslint src/*",
-    "vue-watch": "chokidar src/* -c 'npm run vue-lint && npm run vue-build'"
+    "vue-watch": "chokidar src/* -c 'npm run vue-lint && npm run vue-build && echo OK \\(`date`\\)'"
   },
   "dependencies": {
     "browserify": "^13.1.1",
