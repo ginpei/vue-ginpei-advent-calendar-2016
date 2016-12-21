@@ -40,12 +40,12 @@
       <thead>
         <tr>
           <th class="binTable-location">Offset</th>
-          <th v-for="n in 16" class="binTable-byte">{{n}}</th>
+          <th v-for="n in 16" class="binTable-byte">{{hexen(n-1)}}</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="(line, index) in lines">
-          <td class="binTable-location">{{index.toString(16).toUpperCase()}}</td>
+          <td class="binTable-location">{{hexen(index)}}</td>
           <td v-for="byte in line" class="binTable-byte">{{byte}}</td>
         </tr>
       </tbody>
@@ -78,10 +78,13 @@
         const sArr = []
         const arr = new window.Uint8Array(buffer, offset, 16)
         arr.forEach(byte => {
-          const sByte = byte.toString(16).toUpperCase()
+          const sByte = this.hexen(byte)
           sArr.push(byte < 16 ? '0' + sByte : sByte)
         })
         return sArr
+      },
+      hexen: function (number) {
+        return number.toString(16).toUpperCase()
       },
       dropzone_dragover: function (event) {
         store.commit('setDragging', true)

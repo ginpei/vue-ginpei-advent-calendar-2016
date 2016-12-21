@@ -6884,10 +6884,13 @@ module.exports = {
       const sArr = []
       const arr = new window.Uint8Array(buffer, offset, 16)
       arr.forEach(byte => {
-        const sByte = byte.toString(16).toUpperCase()
+        const sByte = this.hexen(byte)
         sArr.push(byte < 16 ? '0' + sByte : sByte)
       })
       return sArr
+    },
+    hexen: function (number) {
+      return number.toString(16).toUpperCase()
     },
     dropzone_dragover: function (event) {
       store.commit('setDragging', true)
@@ -6919,7 +6922,7 @@ module.exports = {
 if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;return _h('div',{staticClass:"container"},[_h('div',{staticClass:"dropzone",class:{ dragging: _vm.dragging },on:{"dragover":function($event){$event.preventDefault();_vm.dropzone_dragover($event)},"dragleave":function($event){$event.preventDefault();_vm.dropzone_dragleave($event)},"drop":function($event){$event.preventDefault();_vm.dropzone_drop($event)}}},[(!_vm.file)?_h('h1',["Drop Here!"]):_vm._e()," ",(_vm.file)?_h('ul',[_h('li',["Name: "+_vm._s(_vm.file.name)])," ",_h('li',["Size: "+_vm._s(_vm.file.size)])," ",_h('li',["Type: "+_vm._s(_vm.file.type)])]):_vm._e()])," ",(_vm.lines.length > 0)?_h('table',{staticClass:"table binTable-table"},[_h('thead',[_h('tr',[_h('th',{staticClass:"binTable-location"},["Offset"])," ",_vm._l((16),function(n){return _h('th',{staticClass:"binTable-byte"},[_vm._s(n)])})])])," ",_h('tbody',[_vm._l((_vm.lines),function(line,index){return _h('tr',[_h('td',{staticClass:"binTable-location"},[_vm._s(index.toString(16).toUpperCase())])," ",_vm._l((line),function(byte){return _h('td',{staticClass:"binTable-byte"},[_vm._s(byte)])})])})])]):_vm._e()])}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;return _h('div',{staticClass:"container"},[_h('div',{staticClass:"dropzone",class:{ dragging: _vm.dragging },on:{"dragover":function($event){$event.preventDefault();_vm.dropzone_dragover($event)},"dragleave":function($event){$event.preventDefault();_vm.dropzone_dragleave($event)},"drop":function($event){$event.preventDefault();_vm.dropzone_drop($event)}}},[(!_vm.file)?_h('h1',["Drop Here!"]):_vm._e()," ",(_vm.file)?_h('ul',[_h('li',["Name: "+_vm._s(_vm.file.name)])," ",_h('li',["Size: "+_vm._s(_vm.file.size)])," ",_h('li',["Type: "+_vm._s(_vm.file.type)])]):_vm._e()])," ",(_vm.lines.length > 0)?_h('table',{staticClass:"table binTable-table"},[_h('thead',[_h('tr',[_h('th',{staticClass:"binTable-location"},["Offset"])," ",_vm._l((16),function(n){return _h('th',{staticClass:"binTable-byte"},[_vm._s(_vm.hexen(n-1))])})])])," ",_h('tbody',[_vm._l((_vm.lines),function(line,index){return _h('tr',[_h('td',{staticClass:"binTable-location"},[_vm._s(_vm.hexen(index))])," ",_vm._l((line),function(byte){return _h('td',{staticClass:"binTable-byte"},[_vm._s(byte)])})])})])]):_vm._e()])}
 __vue__options__.staticRenderFns = []
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
