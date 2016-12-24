@@ -7,7 +7,7 @@ var store = require('./store.js')
 
 new Vue({
   el: '#app',
-  render: function (createElement) {
+  render (createElement) {
     return createElement(App)
   }
 })

@@ -36,7 +36,7 @@
 
   module.exports = {
     components: { GHeader },
-    data: function () {
+    data () {
       return store.state
     },
     computed: {

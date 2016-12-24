@@ -6904,7 +6904,7 @@ const store = require('./store.js')
 
 module.exports = {
   components: { GHeader },
-  data: function () {
+  data () {
     return store.state
   },
   computed: {
@@ -6992,11 +6992,11 @@ const store = require('./store.js')
 const hashes = ['', '#about', '#contact']
 
 module.exports = {
-  data: function () {
+  data () {
     return store.state
   },
   computed: {
-    underlineStyle: function () {
+    underlineStyle () {
       const itemWidth = 100
       const left = itemWidth * hashes.indexOf(this.hash)
       return {
@@ -7035,7 +7035,7 @@ var store = require('./store.js')
 
 new Vue({
   el: '#app',
-  render: function (createElement) {
+  render (createElement) {
     return createElement(App)
   }
 })
@@ -7057,7 +7057,7 @@ module.exports = new Vuex.Store({
     hash: ''
   },
   mutations: {
-    setCurrentHash: function (state) {
+    setCurrentHash (state) {
       state.hash = window.location.hash
     }
   }

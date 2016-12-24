@@ -57,11 +57,11 @@
   const hashes = ['', '#about', '#contact']
 
   module.exports = {
-    data: function () {
+    data () {
       return store.state
     },
     computed: {
-      underlineStyle: function () {
+      underlineStyle () {
         const itemWidth = 100
         const left = itemWidth * hashes.indexOf(this.hash)
         return {
