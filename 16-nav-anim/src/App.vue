@@ -40,23 +40,31 @@
 </style>
 
 <template>
-  <div class="gHeader">
-    <div class="gHeader-logo">
-      LOGO
+  <div>
+    <div class="gHeader">
+      <div class="gHeader-logo">
+        LOGO
+      </div>
+      <nav class="gHeader-link-list">
+        <a class="gHeader-link-item" href="#">Home</a>
+        <a class="gHeader-link-item" href="#about">About</a>
+        <a class="gHeader-link-item" href="#contact">Contact</a>
+      </nav>
     </div>
-    <nav class="gHeader-link-list">
-      <a class="gHeader-link-item" href="#">Home</a>
-      <a class="gHeader-link-item" href="#">About</a>
-      <a class="gHeader-link-item" href="#">Contact</a>
-    </nav>
+    <div class="container">
+      <p>
+        hash=[{{hash}}]
+      </p>
+    </div>
   </div>
 </template>
 
 <script>
+  var store = require('./store.js')
+
   module.exports = {
     data: function () {
-      return {
-      }
+      return store.state
     },
     methods: {
     }

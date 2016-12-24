@@ -6920,11 +6920,19 @@ var __vueify_style_dispose__ = require("vueify/lib/insert-css").insert("body {\n
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+
+var store = require('./store.js')
 
 module.exports = {
   data: function () {
-    return {
-    }
+    return store.state
   },
   methods: {
   }
@@ -6934,8 +6942,8 @@ module.exports = {
 if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;return _vm._m(0)}
-__vue__options__.staticRenderFns = [function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;return _c('div',{staticClass:"gHeader"},[_c('div',{staticClass:"gHeader-logo"},[_vm._v("\n    LOGO\n  ")]),_vm._v(" "),_c('nav',{staticClass:"gHeader-link-list"},[_c('a',{staticClass:"gHeader-link-item",attrs:{"href":"#"}},[_vm._v("Home")]),_vm._v(" "),_c('a',{staticClass:"gHeader-link-item",attrs:{"href":"#"}},[_vm._v("About")]),_vm._v(" "),_c('a',{staticClass:"gHeader-link-item",attrs:{"href":"#"}},[_vm._v("Contact")])])])}]
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;return _c('div',[_vm._m(0),_vm._v(" "),_c('div',{staticClass:"container"},[_c('p',[_vm._v("\n      hash=["+_vm._s(_vm.hash)+"]\n    ")])])])}
+__vue__options__.staticRenderFns = [function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;return _c('div',{staticClass:"gHeader"},[_c('div',{staticClass:"gHeader-logo"},[_vm._v("\n      LOGO\n    ")]),_vm._v(" "),_c('nav',{staticClass:"gHeader-link-list"},[_c('a',{staticClass:"gHeader-link-item",attrs:{"href":"#"}},[_vm._v("Home")]),_vm._v(" "),_c('a',{staticClass:"gHeader-link-item",attrs:{"href":"#about"}},[_vm._v("About")]),_vm._v(" "),_c('a',{staticClass:"gHeader-link-item",attrs:{"href":"#contact"}},[_vm._v("Contact")])])])}]
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
@@ -6947,12 +6955,13 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
     hotAPI.reload("data-v-4dd06d46", __vue__options__)
   }
 })()}
-},{"vue":3,"vue-hot-reload-api":2,"vueify/lib/insert-css":4}],7:[function(require,module,exports){
+},{"./store.js":8,"vue":3,"vue-hot-reload-api":2,"vueify/lib/insert-css":4}],7:[function(require,module,exports){
 const Vue = require('vue')
 const Vuex = require('vuex')
 Vue.use(Vuex)
 
 var App = require('./App.vue')
+var store = require('./store.js')
 
 Vue.filter('textPreview', function (value, length = 128) {
   let result = value.slice(0, length)
@@ -6969,4 +6978,23 @@ new Vue({
   }
 })
 
-},{"./App.vue":6,"vue":3,"vuex":5}]},{},[7]);
+window.addEventListener('hashchange', (event) => {
+  store.commit('updateCurrentHash')
+})
+store.commit('updateCurrentHash')
+
+},{"./App.vue":6,"./store.js":8,"vue":3,"vuex":5}],8:[function(require,module,exports){
+const Vuex = require('vuex')
+
+module.exports = new Vuex.Store({
+  state: {
+    hash: ''
+  },
+  mutations: {
+    updateCurrentHash: function (state) {
+      state.hash = window.location.hash
+    }
+  }
+})
+
+},{"vuex":5}]},{},[7]);
