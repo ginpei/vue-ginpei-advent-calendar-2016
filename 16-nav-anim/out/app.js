@@ -6989,16 +6989,38 @@ var __vueify_style_dispose__ = require("vueify/lib/insert-css").insert(".gHeader
 
 const store = require('./store.js')
 
-const hashes = ['', '#about', '#contact']
-
 module.exports = {
   data () {
     return store.state
   },
   computed: {
+    itemWidth () {
+      const elList = this.$refs.list
+      const elItem = elList.firstElementChild
+      return elItem.clientWidth
+    },
+
+    hashes () {
+      const elList = this.$refs.list
+      const elItems = elList.children
+      const hashes = Array.from(elItems).map(elItem => {
+        let hash = elItem.getAttribute('href')
+        if (hash === '#') {
+          hash = ''
+        }
+        return hash
+      })
+      return hashes
+    },
+
     underlineStyle () {
-      const itemWidth = 100
-      const left = itemWidth * hashes.indexOf(this.hash)
+      let left
+      if (this.$refs.list) {
+        left = this.itemWidth * this.hashes.indexOf(this.hash)
+      } else {
+        left = this.hash.length * 0
+      }
+
       return {
         transform: 'translateX(' + left + 'px)'
       }
@@ -7012,7 +7034,7 @@ module.exports = {
 if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;return _c('div',{staticClass:"gHeader"},[_c('div',{staticClass:"gHeader-logo"},[_vm._v("\n    LOGO\n  ")]),_vm._v(" "),_c('nav',{staticClass:"gHeader-link-list"},[_c('a',{staticClass:"gHeader-link-item",attrs:{"href":"#"}},[_vm._v("Home")]),_vm._v(" "),_c('a',{staticClass:"gHeader-link-item",attrs:{"href":"#about"}},[_vm._v("About")]),_vm._v(" "),_c('a',{staticClass:"gHeader-link-item",attrs:{"href":"#contact"}},[_vm._v("Contact")]),_vm._v(" "),_c('span',{staticClass:"gHeader-link-itemUnderline",style:(_vm.underlineStyle)})])])}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;return _c('div',{staticClass:"gHeader"},[_c('div',{staticClass:"gHeader-logo"},[_vm._v("\n    LOGO\n  ")]),_vm._v(" "),_c('nav',{ref:"list",staticClass:"gHeader-link-list"},[_c('a',{staticClass:"gHeader-link-item",attrs:{"href":"#"}},[_vm._v("Home")]),_vm._v(" "),_c('a',{staticClass:"gHeader-link-item",attrs:{"href":"#about"}},[_vm._v("About")]),_vm._v(" "),_c('a',{staticClass:"gHeader-link-item",attrs:{"href":"#contact"}},[_vm._v("Contact")]),_vm._v(" "),_c('span',{staticClass:"gHeader-link-itemUnderline",style:(_vm.underlineStyle)})])])}
 __vue__options__.staticRenderFns = []
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)

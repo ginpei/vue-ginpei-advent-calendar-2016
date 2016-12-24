@@ -42,7 +42,7 @@
     <div class="gHeader-logo">
       LOGO
     </div>
-    <nav class="gHeader-link-list">
+    <nav ref="list" class="gHeader-link-list">
       <a class="gHeader-link-item" href="#">Home</a>
       <a class="gHeader-link-item" href="#about">About</a>
       <a class="gHeader-link-item" href="#contact">Contact</a>
@@ -54,16 +54,38 @@
 <script>
   const store = require('./store.js')
 
-  const hashes = ['', '#about', '#contact']
-
   module.exports = {
     data () {
       return store.state
     },
     computed: {
+      itemWidth () {
+        const elList = this.$refs.list
+        const elItem = elList.firstElementChild
+        return elItem.clientWidth
+      },
+
+      hashes () {
+        const elList = this.$refs.list
+        const elItems = elList.children
+        const hashes = Array.from(elItems).map(elItem => {
+          let hash = elItem.getAttribute('href')
+          if (hash === '#') {
+            hash = ''
+          }
+          return hash
+        })
+        return hashes
+      },
+
       underlineStyle () {
-        const itemWidth = 100
-        const left = itemWidth * hashes.indexOf(this.hash)
+        let left
+        if (this.$refs.list) {
+          left = this.itemWidth * this.hashes.indexOf(this.hash)
+        } else {
+          left = this.hash.length * 0
+        }
+
         return {
           transform: 'translateX(' + left + 'px)'
         }
