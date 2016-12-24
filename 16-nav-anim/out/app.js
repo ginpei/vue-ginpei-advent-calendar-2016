@@ -6884,6 +6884,20 @@ var __vueify_style_dispose__ = require("vueify/lib/insert-css").insert("body {  
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 const GHeader = require('./GHeader.vue')
 const store = require('./store.js')
@@ -6903,7 +6917,7 @@ module.exports = {
 if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;return _c('div',[_c('g-header'),_vm._v(" "),_c('div',{staticClass:"container"},[_c('p',[_vm._v("\n      hash=["+_vm._s(_vm.hash)+"]\n    ")])])])}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._c;return _c('div',[_c('g-header'),_vm._v(" "),_c('div',{staticClass:"container"},[_c('p',[_vm._v("\n      hash=["+_vm._s(_vm.hash)+"]\n    ")]),_vm._v(" "),_c('section',{directives:[{name:"show",rawName:"v-show",value:(_vm.hash===''),expression:"hash===''"}]},[_c('h1',[_vm._v("Home")]),_vm._v(" "),_c('p',[_vm._v("Sit est dolore quae ab illo nostrum quibusdam? Ratione consequuntur pariatur pariatur corrupti esse unde dolor Cupiditate voluptas voluptatibus ad deleniti deserunt Magnam dolores nobis labore cupiditate rem deleniti Incidunt!")]),_vm._v(" "),_c('p',[_vm._v("Lorem et commodi vero corporis ipsa. Sit iste tempore suscipit illum voluptatibus esse. Officiis impedit iure placeat illo odit. Enim pariatur eligendi tempora mollitia distinctio doloremque debitis, fuga Sapiente porro?")]),_vm._v(" "),_c('p',[_vm._v("Lorem unde consequatur asperiores quasi dignissimos magnam fugiat veritatis reprehenderit Nulla a blanditiis vero quidem quam Sed iusto ratione corporis porro maxime? Dolorem quisquam ad magni dolorum qui Maiores distinctio.")])]),_vm._v(" "),_c('section',{directives:[{name:"show",rawName:"v-show",value:(_vm.hash==='#about'),expression:"hash==='#about'"}]},[_c('h1',[_vm._v("About")]),_vm._v(" "),_c('p',[_vm._v("Sit magni obcaecati laboriosam quo est, exercitationem! Earum id culpa ad sed excepturi. Repellat nam sit voluptatum perferendis iure. Blanditiis tempore est ab expedita eveniet Hic harum minus assumenda vero.")])]),_vm._v(" "),_c('section',{directives:[{name:"show",rawName:"v-show",value:(_vm.hash==='#contact'),expression:"hash==='#contact'"}]},[_c('h1',[_vm._v("Contact")]),_vm._v(" "),_c('p',[_vm._v("Ipsum ratione aperiam harum ducimus laborum Dicta animi libero ducimus beatae atque Dignissimos dolorem eius vitae assumenda iste, inventore, aut reprehenderit in. Similique alias ipsum quam cum veniam. Animi tenetur")])])])])}
 __vue__options__.staticRenderFns = []
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
