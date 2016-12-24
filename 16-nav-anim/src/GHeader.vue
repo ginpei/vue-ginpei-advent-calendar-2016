@@ -56,36 +56,29 @@
 
   module.exports = {
     data () {
-      return store.state
+      return {
+        itemWidth: 999,
+        hashes: [],
+        state: store.state
+      }
+    },
+    mounted () {
+      const elList = this.$refs.list
+      const elItems = elList.children
+
+      this.itemWidth = elItems[0].clientWidth
+
+      this.hashes = Array.from(elItems).map(elItem => {
+        let hash = elItem.getAttribute('href')
+        if (hash === '#') {
+          hash = ''
+        }
+        return hash
+      })
     },
     computed: {
-      itemWidth () {
-        const elList = this.$refs.list
-        const elItem = elList.firstElementChild
-        return elItem.clientWidth
-      },
-
-      hashes () {
-        const elList = this.$refs.list
-        const elItems = elList.children
-        const hashes = Array.from(elItems).map(elItem => {
-          let hash = elItem.getAttribute('href')
-          if (hash === '#') {
-            hash = ''
-          }
-          return hash
-        })
-        return hashes
-      },
-
       underlineStyle () {
-        let left
-        if (this.$refs.list) {
-          left = this.itemWidth * this.hashes.indexOf(this.hash)
-        } else {
-          left = this.hash.length * 0
-        }
-
+        const left = this.itemWidth * this.hashes.indexOf(this.state.hash)
         return {
           transform: 'translateX(' + left + 'px)'
         }
