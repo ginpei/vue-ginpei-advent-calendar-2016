@@ -5,7 +5,7 @@ module.exports = new Vuex.Store({
     hash: ''
   },
   mutations: {
-    updateCurrentHash: function (state) {
+    setCurrentHash: function (state) {
       state.hash = window.location.hash
     }
   }

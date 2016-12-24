@@ -12,7 +12,11 @@ new Vue({
   }
 })
 
+// manage location hash
 window.addEventListener('hashchange', (event) => {
-  store.commit('updateCurrentHash')
+  updateCurrentHash()
 })
-store.commit('updateCurrentHash')
+updateCurrentHash()
+function updateCurrentHash () {
+  store.commit('setCurrentHash', window.location.href)
+}

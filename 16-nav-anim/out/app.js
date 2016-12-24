@@ -6984,10 +6984,14 @@ new Vue({
   }
 })
 
+// manage location hash
 window.addEventListener('hashchange', (event) => {
-  store.commit('updateCurrentHash')
+  updateCurrentHash()
 })
-store.commit('updateCurrentHash')
+updateCurrentHash()
+function updateCurrentHash () {
+  store.commit('setCurrentHash', window.location.href)
+}
 
 },{"./App.vue":6,"./store.js":8,"vue":3,"vuex":5}],8:[function(require,module,exports){
 const Vuex = require('vuex')
@@ -6997,7 +7001,7 @@ module.exports = new Vuex.Store({
     hash: ''
   },
   mutations: {
-    updateCurrentHash: function (state) {
+    setCurrentHash: function (state) {
       state.hash = window.location.hash
     }
   }
