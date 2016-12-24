@@ -6864,7 +6864,7 @@ return index;
 
 })));
 },{}],6:[function(require,module,exports){
-var __vueify_style_dispose__ = require("vueify/lib/insert-css").insert("body {\n  padding-top: 50px;\n  min-height: 5000px;\n}\n.gHeader {\n  background-color: #f8f8f8;\n  border-bottom: 1px solid #e7e7e7;\n  display: flex;\n  height: 50px;\n  line-height: 50px;\n  left: 0;\n  position: absolute;\n  top: 0;\n  width: 100%;\n}\n.gHeader-logo {\n  text-align: center;\n  width: 100px;\n}\n.gHeader-link-list {\n  position: relative;\n}\n.gHeader-link-item {\n  display: inline-block;\n  float: left;\n  height: 100%;\n  text-align: center;\n  width: 100px;\n}\n.gHeader-link-itemUnderline {\n  background-color: #69f;\n  bottom: 0;\n  content: \"\";\n  display: block;\n  height: 3px;\n  left: 0;\n  position: absolute;\n  transition: transform 200ms;\n  width: 100px;\n}")
+var __vueify_style_dispose__ = require("vueify/lib/insert-css").insert("body {  /* Sorry! */\n  padding-top: 50px;\n  min-height: 5000px;\n}\n.gHeader {\n  background-color: #f8f8f8;\n  border-bottom: 1px solid #e7e7e7;\n  display: flex;\n  height: 50px;\n  line-height: 50px;\n  left: 0;\n  position: absolute;\n  top: 0;\n  width: 100%;\n}\n.gHeader-logo {\n  text-align: center;\n  width: 100px;\n}\n.gHeader-link-list {\n  position: relative;\n}\n.gHeader-link-item {\n  display: inline-block;\n  float: left;\n  height: 100%;\n  text-align: center;\n  width: 100px;\n}\n.gHeader-link-itemUnderline {\n  background-color: #69f;\n  bottom: 0;\n  content: \"\";\n  display: block;\n  height: 3px;\n  left: 0;\n  position: absolute;\n  transition: transform 200ms;\n  width: 100px;\n}")
 ;(function(){
 //
 //
